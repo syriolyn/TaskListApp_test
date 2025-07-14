@@ -1,0 +1,100 @@
+## .gitignore для ASP.NET Core проекта
+
+# Игнорируем файлы IDE
+.vs/
+.idea/
+*.user
+*.suo
+*.userprefs
+*.userosscache
+*.sln.iml
+
+# Игнорируем результаты сборки
+bin/
+obj/
+[Dd]ebug/
+[Rr]elease/
+x64/
+x86/
+build/
+bld/
+[Bb]in/[Oo]bj/
+
+# Файлы пакетов NuGet
+**/[Pp]ackages/*
+!**/[Pp]ackages/build/
+.nuget/
+*.nupkg
+nuget.exe
+
+# Файлы Rider
+*.sln.dotnet
+.ionide/
+
+# Файлы резервных копий
+*.swp
+*.*~
+*.orig
+*.bak
+*.tmp
+
+# Файлы тестов
+[Tt]est[Rr]esult*/
+[Bb]uild[Ll]og.*
+
+# Файлы окружения
+.env
+.env.local
+.env.development
+.env.production
+
+# Файлы Azure
+*.pfx
+*.publishsettings
+
+# Файлы редактора
+*.DS_Store
+*.jfm
+
+# Файлы пользовательских настроек
+appsettings.Development.json
+
+# Файлы миграций Entity Framework (можно раскомментировать если хотите их игнорировать)
+# Data/Migrations/
+
+# Файлы логов
+*.log
+*.log.*
+
+# Файлы npm/yarn
+node_modules/
+jspm_packages/
+
+# Файлы клиентских библиотек
+wwwroot/lib/
+
+# Файлы компилятора
+**/__pycache__/
+*.pyc
+
+# Файлы Rider
+.idea/
+*.sln.iml
+
+# Файлы macOS
+.DS_Store
+._*
+
+# Файлы dotnet-ef
+.dotnet/
+
+# Файлы тестовых покрытий
+coverage.xml
+*.coverage
+*.coverage.*
+
+# Файлы временной компиляции Razor
+**/obj/Debug/net6.0/Razor/Views/
+**/obj/Debug/net6.0/Razor/Pages/
+**/obj/Release/net6.0/Razor/Views/
+**/obj/Release/net6.0/Razor/Pages/
