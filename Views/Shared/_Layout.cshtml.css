@@ -57,3 +57,12 @@ button.accept-policy {
     transform: scale(1.5);
     cursor: pointer;
 }
+
+.delete-btn {
+    transition: all 0.2s;
+}
+
+.delete-btn:hover {
+    transform: scale(1.1);
+    color: #dc3545 !important;
+}
