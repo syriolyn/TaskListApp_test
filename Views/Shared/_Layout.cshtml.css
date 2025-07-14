@@ -46,3 +46,14 @@ button.accept-policy {
   white-space: nowrap;
   line-height: 60px;
 }
+
+/* Подсветка выполненных задач */
+.table-success {
+    background-color: #d1e7dd;
+}
+
+/* Чекбоксы большего размера */
+.task-checkbox {
+    transform: scale(1.5);
+    cursor: pointer;
+}

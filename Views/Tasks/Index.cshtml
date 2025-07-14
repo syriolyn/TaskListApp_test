@@ -1,0 +1,53 @@
+@model IEnumerable<TaskListApp.Models.TaskItem>
+@{
+    ViewData["Title"] = "Список задач";
+}
+
+<h1>@ViewData["Title"]</h1>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Название</th>
+            <th>Описание</th>
+            <th>Статус</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+             <tr class="@(item.IsCompleted ? "table-success" : "")">
+                <td>
+                    <input type="checkbox" 
+                           class="task-checkbox" 
+                           data-task-id="@item.Id"
+                           @(item.IsCompleted ? "checked" : "") />
+                </td>
+                <td>@item.Title</td>
+                <td>@item.Description</td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+@section Scripts {
+<script>
+$(document).ready(function() {
+    $('.task-checkbox').change(function() {
+        const taskId = $(this).data('task-id');
+        const isCompleted = $(this).is(':checked');
+        
+        $.ajax({
+            url: '/Tasks/ToggleComplete',
+            type: 'POST',
+            data: { id: taskId },
+            success: function() {
+                // Обновляем строку визуально
+                const row = $(this).closest('tr');
+                row.toggleClass('table-success', isCompleted);
+            }.bind(this)
+        });
+    });
+});
+</script>
+}

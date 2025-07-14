@@ -134,5 +134,21 @@ namespace TaskListApp.Controllers
         {
             return _context.Tasks.Any(e => e.Id == id);
         }
+
+        [HttpPost]
+        public async Task<IActionResult> ToggleComplete(int id)
+        {
+            var task = await _context.Tasks.FindAsync(id);
+            if(task == null)
+            {
+                return NotFound();
+            }
+
+            task.IsCompleted = !task.IsCompleted;
+            await _context.SaveChangesAsync();
+
+            return Ok();
+        }
+
     }
 }
