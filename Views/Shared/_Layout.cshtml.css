@@ -103,3 +103,14 @@ button.accept-policy {
 .form-check-input:hover {
     border-color: #28a745;
 }
+
+.btn-group .btn {
+    margin-right: 5px;
+}
+
+.task-checkbox {
+    transition: all 0.3s ease;
+}
+.task-checkbox:checked {
+    transform: scale(1.1);
+}
