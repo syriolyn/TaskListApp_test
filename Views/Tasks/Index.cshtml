@@ -8,38 +8,40 @@
 <table class="table">
     <thead>
         <tr>
+            <th>Выполнено</th>  <!-- Чекбокс -->
             <th>Название</th>
             <th>Описание</th>
-            <th>Статус</th>
-            <th>Действия</th>
+            <th>Действия</th>   <!-- Кнопки Удалить/Изменить -->
         </tr>
     </thead>
     <tbody>
         @foreach (var item in Model)
         {
             <tr class="@(item.IsCompleted ? "table-success" : "")">
-                <td>@item.Title</td>
-                <td>@item.Description</td> <!-- Описание теперь точно отображается -->
-                <td>
-                    <div class="form-check form-switch">
+                <td class="align-middle">
+                    <div class="form-check">
                         <input class="form-check-input task-checkbox" 
                                type="checkbox" 
                                data-task-id="@item.Id"
                                @(item.IsCompleted ? "checked" : "")
-                               style="transform: scale(1.5); cursor: pointer;">
-                        <label class="form-check-label">
-                            @(item.IsCompleted ? "Выполнено" : "В работе")
-                        </label>
+                               style="width: 1.2em; height: 1.2em; cursor: pointer;">
                     </div>
                 </td>
+                <td>@item.Title</td>
+                <td>@item.Description</td>
                 <td>
-                    <form asp-action="Delete" method="post" onsubmit="return confirm('Удалить задачу?');">
-                        <input type="hidden" name="id" value="@item.Id" />
-                        @Html.AntiForgeryToken()
-                        <button type="submit" class="btn btn-sm btn-danger">
-                            <i class="fas fa-trash-alt"></i> Удалить
-                        </button>
-                    </form>
+                    <div class="btn-group" role="group">
+                        <a asp-action="Edit" asp-route-id="@item.Id" class="btn btn-sm btn-primary me-1">
+                            <i class="fas fa-edit"></i> Изменить
+                        </a>
+                        <form asp-action="Delete" method="post" onsubmit="return confirm('Удалить задачу?');">
+                            <input type="hidden" name="id" value="@item.Id" />
+                            @Html.AntiForgeryToken()
+                            <button type="submit" class="btn btn-sm btn-danger">
+                                <i class="fas fa-trash-alt"></i> Удалить
+                            </button>
+                        </form>
+                    </div>
                 </td>
             </tr>
         }
@@ -53,7 +55,6 @@ $(document).ready(function() {
         const taskId = $(this).data('task-id');
         const isCompleted = $(this).is(':checked');
         const row = $(this).closest('tr');
-        const label = $(this).siblings('label');
         
         $.ajax({
             url: '/Tasks/ToggleComplete',
@@ -65,7 +66,6 @@ $(document).ready(function() {
             success: function() {
                 // Обновляем строку
                 row.toggleClass('table-success', isCompleted);
-                label.text(isCompleted ? "Выполнено" : "В работе");
                 
                 // Плавная анимация
                 row.css('opacity', 0.6).animate({opacity: 1}, 300);

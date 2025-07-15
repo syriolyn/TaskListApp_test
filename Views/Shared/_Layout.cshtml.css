@@ -81,3 +81,25 @@ button.accept-policy {
     margin-left: 0;
     margin-right: 10px;
 }
+
+/* Стили для кастомного чекбокса */
+.task-checkbox {
+    margin-top: 0;
+    cursor: pointer;
+}
+
+/* Убираем стандартный вид Bootstrap для form-check */
+.form-check-input {
+    background-color: white;
+    border: 2px solid #adb5bd;
+}
+
+.form-check-input:checked {
+    background-color: #28a745;
+    border-color: #28a745;
+}
+
+/* Стиль при наведении */
+.form-check-input:hover {
+    border-color: #28a745;
+}
